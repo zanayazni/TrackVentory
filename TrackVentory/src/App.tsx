@@ -35,7 +35,7 @@ function App() {
 
           <div className="need flex flex-row items-center gap-2 mt-[20px]">
             <h2 className="text-black opacity-50">Need an account?</h2>
-            <button>Create an account</button>
+            <button>create an account</button>
           </div>
         </div>
 >>>>>>> Stashed changes
