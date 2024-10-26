@@ -5,7 +5,7 @@ function App() {
         <div className="sec-1 flex flex-col border-[1px] border-black items-center px-[120px] py-[50px] rounded-xl">
           <div className="judul flex flex-col items-center gap-3">
             <h2 className="font-bold text-[40px]">Welcome Back</h2>
-            <h2 className="font-semibold text-[20px] opacity-20">Welcome Back, Please enter Your details</h2>
+            <h2 className="font-semibold text-[20px] opacity-20">Welcome Back, Please enter your details</h2>
           </div>
 
           <div className="email mt-[50px] flex flex-col gap-7">
@@ -22,6 +22,7 @@ function App() {
             <button>Create an account</button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
