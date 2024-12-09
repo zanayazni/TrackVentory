@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 
 export const kategori = [
   { key: "Makanan", label: "Makanan" },
@@ -126,7 +127,7 @@ const Landing = () => {
                   <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
                 <td className="px-6 py-4">
-                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                  <MdDeleteForever className="font-medium text-blue-600 dark:text-blue-500 hover:underline"/>
                 </td>
               </tr>
               <tr className="bg-white dark:bg-gray-800">
