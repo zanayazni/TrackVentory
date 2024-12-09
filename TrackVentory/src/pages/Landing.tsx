@@ -7,6 +7,7 @@ import { FaCircleArrowDown } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const kategori = [
   { key: "Makanan", label: "Makanan" },
@@ -17,6 +18,7 @@ export const kategori = [
 ];
 
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="body-landing flex min-h-screen">
       <div className="sidebar min-h-screen bg-[#12376A] text-white w-[25rem] px-[20px]">
@@ -25,11 +27,11 @@ const Landing = () => {
           <h2 className="text-[30px] font-semibold">TrackVentory</h2>
         </div>
         <div className="button-area flex flex-col justify-center mt-[60px] gap-[20px]">
-          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover: rounded-2xl hover:cursor-pointer hover:text-black">
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
             <AiOutlineDashboard className="text-[35px]" />
             <h2 className="text-[25px]">Dashboard</h2>
           </div>
-          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover: rounded-2xl hover:cursor-pointer hover:text-black">
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
             <MdOutlineHistory className="text-[35px]" />
             <h2 className="text-[25px]">History</h2>
           </div>
@@ -69,7 +71,7 @@ const Landing = () => {
             <div className="relative flex items-center w-[500px] h-[55px] rounded-2xl focus-within:shadow-lg bg-white overflow-hidden">
               <div className="grid place-items-center h-full w-12 text-gray-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
 
@@ -82,8 +84,67 @@ const Landing = () => {
                 <SelectItem key={kategori.key}>{kategori.label}</SelectItem>
               ))}
             </Select>
-            <Button className="bg-sky-600 text-white py-[28px] font-semibold">Add Product +</Button>
+            <Button className="bg-sky-600 text-white py-[28px] font-semibold" onClick={() => navigate("/AddProduct")}>Add Product +</Button>
           </div>
+        </div>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-[20px] mx-[20px]">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">Product name</th>
+                <th scope="col" className="px-6 py-3">Color</th>
+                <th scope="col" className="px-6 py-3">Category</th>
+                <th scope="col" className="px-6 py-3">Price</th>
+                <th scope="col" className="px-6 py-3">Action</th>
+                <th scope="col" className="px-6 py-3">Delete</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Apple MacBook Pro 17"
+                </th>
+                <td className="px-6 py-4">Silver</td>
+                <td className="px-6 py-4">Laptop</td>
+                <td className="px-6 py-4">$2999</td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                </td>
+              </tr>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Microsoft Surface Pro
+                </th>
+                <td className="px-6 py-4">White</td>
+                <td className="px-6 py-4">Laptop PC</td>
+                <td className="px-6 py-4">$1999</td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                </td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Magic Mouse 2
+                </th>
+                <td className="px-6 py-4">Black</td>
+                <td className="px-6 py-4">Accessories</td>
+                <td className="px-6 py-4">$99</td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+                <td className="px-6 py-4">
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
