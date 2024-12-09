@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 function App() {
   return (
     <div className="bg-white min-h-screen">
@@ -24,6 +25,24 @@ function App() {
         </div>
       </div>
     </div>
+=======
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Landing from "./pages/Landing";
+import Edit from "./pages/Edit";
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/landing" element={<Landing />} />
+        <Route path="/edit" element={<Edit />}/>
+      </Routes>
+    </Router>
+>>>>>>> Stashed changes
   );
 }
 
