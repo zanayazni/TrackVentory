@@ -5,7 +5,7 @@ const Register = () => {
   const navigate = useNavigate();
   return (
     <div className="body-login min-h-screen w-full bg-white text-white flex">
-      <div className="left-side bg-sky-900 min-h-screen w-[760px]">
+      <div className="left-side bg-[#12376A] min-h-screen w-[760px]">
         <div className="container flex items-center justify-center min-h-screen">
           <div className="body-container flex flex-col items-start text-[60px] font-bold">
             <h2>Welcome</h2>

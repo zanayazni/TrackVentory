@@ -30,6 +30,7 @@ const AddProduct = () => {
 
     return (
         <div className="body-landing flex min-h-screen">
+            {/* sidebar */}
             <div className="sidebar min-h-screen bg-[#12376A] text-white w-[25rem] px-[20px]">
                 <div className="head flex flex-row items-center justify-center mt-[20px] gap-[20px]">
                     <FaDropbox className="text-[40px]" />
@@ -46,38 +47,44 @@ const AddProduct = () => {
                     </div>
                 </div>
             </div>
+
+            {/* main board */}
             <div className="main-board min-h-screen bg-[#F2F4F3] flex flex-col w-full text-black px-[16px]">
-                <div className="head flex flex-row justify-end items-center mt-[16px]">
+                <div className="head flex flex-row justify-end items-center mt-[10px]">
                     <FaUserCircle className="text-[40px] text-[#12376A]" />
                 </div>
                 <div className="container flex flex-col items-center gap-[20px]">
+                    
                     {/* Kotak informasi */}
-                    <div className="box flex flex-row gap-[40px]">
-                        <div className="box-1 flex flex-row items-center gap-[10px] w-[300px] px-[20px] py-[20px] rounded-2xl shadow-2xl">
-                            <FaCircleArrowUp className="text-green-700 text-[60px]" />
+                    <div className="container flex justify-center ">
+                        <div className="box flex flex-row gap-[45px] ">
+                            <div className="box-1 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                                <FaCircleArrowUp className="text-green-700 text-[60px]" />
                             <div className="text flex flex-col items-start text-[20px]">
                                 <h2 className="font-semibold">Barang Masuk</h2>
                                 <h2>100</h2>
                             </div>
-                        </div>
-                        <div className="box-2 flex flex-row items-center gap-[10px] shadow-2xl w-[300px] px-[20px] py-[20px] rounded-2xl">
-                            <BsBoxSeam className="text-warning text-[60px]" />
+                            </div>
+                            <div className="box-2 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                                <BsBoxSeam className="text-warning text-[60px]" />
                             <div className="text flex flex-col items-start text-[20px]">
                                 <h2 className="font-semibold">Total Barang</h2>
                                 <h2>100</h2>
                             </div>
-                        </div>
-                        <div className="box-2 flex flex-row items-center gap-[10px] shadow-2xl w-[300px] px-[20px] py-[20px] rounded-2xl">
-                            <FaCircleArrowDown className="text-red-700 text-[60px]" />
+                            </div>
+                            <div className="box-3 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                                <FaCircleArrowDown className="text-red-700 text-[60px]" />
                             <div className="text flex flex-col items-start text-[20px]">
                                 <h2 className="font-semibold">Barang Keluar</h2>
                                 <h2>100</h2>
                             </div>
+                            </div>
                         </div>
                     </div>
+
                     {/* Form "Buat Data Barang Baru" */}
-                    <div className="form-container bg-white w-[500px] p-[20px] rounded-2xl shadow-xl">
-                        <h2 className="text-[25px] font-bold mb-[20px] text-center">Buat Data Barang Baru</h2>
+                    <div className="form-container bg-white w-[1142px] p-[20px] mx-[20px] rounded-2xl shadow-md">
+                        <h2 className="text-[25px] font-bold mb-[20px]">Buat Data Barang Baru</h2>
                         <form onSubmit={handleSubmit} className="flex flex-col gap-[15px]">
                             <label className="flex flex-col">
                                 Nama Barang
@@ -121,7 +128,7 @@ const AddProduct = () => {
                             </label>
                             <button
                                 type="submit"
-                                className="bg-blue-500 text-white py-[10px] px-[20px] rounded-md hover:bg-blue-600"
+                                className="bg-[#4E6990] text-white py-[10px] px-[20px] rounded-md hover:bg-blue-600"
                             >
                                 Save
                             </button>
