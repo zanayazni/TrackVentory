@@ -7,7 +7,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-{/* tabel area */}
+{/* tabel area */}{/* tabel area */}
 import { TbEdit } from "react-icons/tb"
 
 const Edit = () => {
