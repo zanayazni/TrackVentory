@@ -117,7 +117,7 @@ const Landing = () => {
               {isOpen && (
                 <div
                   id="dropdown"
-                  className="z-10 absolute w-auto right-0 mt-2 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="z-10 absolute right-0 mt-2 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 >
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
