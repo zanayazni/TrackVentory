@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import Landing from "./pages/Landing";
 import AddProduct from "./pages/AddProduct";
 import Edit from "./pages/Edit";
+import History from "./pages/History";
+
 function App() {
   return (
     <Router>
@@ -13,6 +15,7 @@ function App() {
         <Route path="/landing" element={<Landing />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Edit" element={<Edit />} />
+        <Route path="/History" element={<History />} />
       </Routes>
     </Router>
   );

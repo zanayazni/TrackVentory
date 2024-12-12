@@ -7,8 +7,10 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { MdOutlineHistory } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-{/* tabel area */}{/* tabel area */}
-import { TbEdit } from "react-icons/tb"
+{
+  /* tabel area */
+}
+import { TbEdit } from "react-icons/tb";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -28,21 +30,33 @@ const Edit = () => {
 
   return (
     <div className="body-landing flex min-h-screen">
-      {/* Sidebar */}
+      {/* side bar */}
       <div className="sidebar min-h-screen bg-[#12376A] text-white w-[25rem] px-[20px]">
         <div className="head flex flex-row items-center justify-center mt-[20px] gap-[20px]">
           <FaDropbox className="text-[40px]" />
           <h2 className="text-[30px] font-semibold">TrackVentory</h2>
         </div>
         <div className="button-area flex flex-col justify-center mt-[60px] gap-[20px]">
-          <div className="button flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
+          <button
+            onClick={() => {
+              // Navigate to the current dashboard route
+              navigate("/landing");
+
+              // Trigger a page reload to refresh the dashboard
+              window.location.reload();
+            }}
+            className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] bg-amber-600 rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-amber-500"
+          >
             <AiOutlineDashboard className="text-[35px]" />
             <h2 className="text-[25px]">Dashboard</h2>
-          </div>
-          <div className="button flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
+          </button>
+          <button
+            onClick={() => navigate("/History")}
+            className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-white hover:rounded-2xl hover:cursor-pointer hover:text-black hover:shadow-md"
+          >
             <MdOutlineHistory className="text-[35px]" />
             <h2 className="text-[25px]">History</h2>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -54,7 +68,7 @@ const Edit = () => {
         </div>
 
         {/* Informasi Barang */}
-        <div className="container flex justify-center mt-[20px]">
+        <div className="container flex justify-center mt-[10px]">
           <div className="box flex flex-row gap-[45px]">
             <div className="box-1 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
               <FaCircleArrowUp className="text-green-700 text-[60px]" />
@@ -81,11 +95,13 @@ const Edit = () => {
         </div>
 
         {/* Form Edit */}
-        <div className="container flex flex-col items-center gap-[20px] mt-[40px]">
+        <div className="container flex flex-col items-center gap-[20px] mt-[30px]">
           <form className="form-container bg-white w-[1142px] p-[20px] mx-[20px] rounded-2xl shadow-md">
             {/* nama Barang */}
             <div className="mb-[15px]">
-              <label className="block text-[18px] font-medium mb-[5px]">Nama Barang</label>
+              <label className="block text-[18px] font-medium mb-[5px]">
+                Nama Barang
+              </label>
               <div className="flex items-center gap-[10px]">
                 <input
                   type="text"
@@ -101,7 +117,9 @@ const Edit = () => {
 
             {/* Kategori */}
             <div className="mb-[15px]">
-              <label className="block text-[18px] font-medium mb-[5px]">Kategori</label>
+              <label className="block text-[18px] font-medium mb-[5px]">
+                Kategori
+              </label>
               <div className="flex items-center gap-[10px]">
                 <input
                   type="text"
@@ -117,7 +135,9 @@ const Edit = () => {
 
             {/* Tanggal Masuk */}
             <div className="mb-[15px]">
-              <label className="block text-[18px] font-medium mb-[5px]">Tanggal Masuk</label>
+              <label className="block text-[18px] font-medium mb-[5px]">
+                Tanggal Masuk
+              </label>
               <div className="flex items-center gap-[10px]">
                 <input
                   type="date"
@@ -133,7 +153,9 @@ const Edit = () => {
 
             {/* Jumlah Stock */}
             <div className="mb-[15px]">
-              <label className="block text-[18px] font-medium mb-[5px]">Jumlah Stock</label>
+              <label className="block text-[18px] font-medium mb-[5px]">
+                Jumlah Stock
+              </label>
               <div className="flex items-center gap-[10px]">
                 <input
                   type="number"
