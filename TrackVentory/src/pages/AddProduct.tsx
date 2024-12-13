@@ -96,7 +96,7 @@ const AddProduct = () => {
 
         {/* Form "Buat Data Barang Baru" */}
         <div className="container flex flex-col items-center gap-[20px] mt-[30px]">
-          <div className="form-container bg-white w-[1142px] p-[20px] mx-[20px] rounded-2xl shadow-md mt-[30px]">
+          <div className="form-container bg-white w-[1142px] p-[20px] mx-[20px] rounded-2xl shadow-md">
             <h2 className="text-[25px] font-bold mb-[20px]">
               Buat Data Barang Baru
             </h2>
