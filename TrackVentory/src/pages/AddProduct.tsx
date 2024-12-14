@@ -17,6 +17,8 @@ const AddProduct = () => {
     jumlahStock: "",
   });
 
+  const [showNotification, setShowNotification] = useState(false); // State untuk notifikasi
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -25,7 +27,16 @@ const AddProduct = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Data Barang Baru:", formData);
-    // Tambahkan logika penyimpanan data
+    // Tambahkan logika penyimpanan data di sini
+
+    // Menampilkan notifikasi
+    setShowNotification(true);
+
+    // Menyembunyikan notifikasi setelah 3 detik dan navigasi ke halaman lain
+    setTimeout(() => {
+      setShowNotification(false);
+      navigate("/landing"); // Arahkan ke halaman lain setelah data berhasil disimpan
+    }, 1000);
   };
 
   return (
@@ -143,7 +154,7 @@ const AddProduct = () => {
               </label>
               <button
                 type="submit"
-                className="bg-[#4E6990] text-white py-[10px] px-[20px] rounded-md hover:bg-blue-600"
+                className="bg-amber-600 text-white py-[10px] px-[20px] rounded-md hover:bg-[#12376A]"
               >
                 Save
               </button>
@@ -151,6 +162,13 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
+
+      {/* Notifikasi */}
+      {showNotification && (
+        <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
+          Data baru berhasil dibuat!
+        </div>
+      )}
     </div>
   );
 };
