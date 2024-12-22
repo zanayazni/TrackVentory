@@ -22,7 +22,7 @@ const Landing = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <div className="body-landing flex min-h-screen">
       {/* side bar */}
@@ -125,7 +125,7 @@ const Landing = () => {
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Dashboard
+                        Pakaian
                       </a>
                     </li>
                     <li>
@@ -133,7 +133,7 @@ const Landing = () => {
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Settings
+                        Aksesoris
                       </a>
                     </li>
                     <li>
@@ -141,7 +141,7 @@ const Landing = () => {
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Earnings
+                        Peralatan
                       </a>
                     </li>
                     <li>
@@ -149,7 +149,15 @@ const Landing = () => {
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Sign out
+                        Elektronik
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Obat-obatan
                       </a>
                     </li>
                   </ul>

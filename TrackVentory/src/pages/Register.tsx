@@ -2,6 +2,7 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios"; // Import Axios
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Register = () => {
   const [rePassword, setRePassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // Validasi form harus terisi semua
     if (!username || !email || !password || !rePassword) {
       setErrorMessage("Form masih ada yang kosong.");
@@ -30,18 +31,34 @@ const Register = () => {
       return;
     }
 
-    // Simulasi validasi email terdaftar
-    const existingEmail = "test@example.com";
-    if (email === existingEmail) {
-      setErrorMessage("Email sudah digunakan.");
-      return;
-    }
-
     // Reset error message jika tidak ada error
     setErrorMessage("");
 
-    // Logika pendaftaran berhasil (bisa diganti dengan API call untuk registrasi)
-    navigate("/");
+    try {
+      // Mengirim data registrasi ke backend menggunakan axios
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
+
+      // Jika registrasi berhasil, arahkan ke halaman login
+      if (response.status === 200) {
+        navigate("/"); // Atau sesuaikan dengan URL login
+      }
+    } catch (error) {
+      // Tangani error, misalnya jika email sudah terdaftar
+      if (error.response) {
+        // Respons error dari server
+        setErrorMessage("Gagal mendaftar: " + error.response.data.message);
+      } else {
+        // Error di sisi jaringan atau server tidak merespons
+        setErrorMessage("Gagal mendaftar: Terjadi kesalahan jaringan.");
+      }
+    }
   };
 
   return (
@@ -50,7 +67,9 @@ const Register = () => {
         <div className="container flex items-center justify-center min-h-screen">
           <div className="body-container flex flex-col items-start text-[60px] font-bold">
             <h2>Welcome</h2>
-            <h2 className="w-[600px] text-[30px] font-medium">Create an account to join us</h2>
+            <h2 className="w-[600px] text-[30px] font-medium">
+              Create an account to join us
+            </h2>
           </div>
         </div>
       </div>
@@ -97,7 +116,9 @@ const Register = () => {
               onChange={(e) => setRePassword(e.target.value)}
             />
           </div>
-          {errorMessage && <h2 className="text-red-700 mt-[10px]">{errorMessage}</h2>}
+          {errorMessage && (
+            <h2 className="text-red-700 mt-[10px]">{errorMessage}</h2>
+          )}
           <Button
             className="bg-[#12376A] text-white text-[20px] px-[30px] py-[25px] w-[350px] rounded-xl mt-[20px]"
             onClick={handleRegister}
