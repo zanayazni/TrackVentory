@@ -2,37 +2,49 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios"; // Import axios untuk melakukan request ke backend
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState(""); // Gunakan 'username' alih-alih 'email'
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = () => {
-    if (!email || !password) {
+  const handleLogin = async () => {
+    // Validasi form harus terisi semua
+    if (!username || !password) {
       setErrorMessage("Username atau password salah");
-      return;
-    }
-    if (password.length < 8) {
-      setErrorMessage("Password harus lebih dari 8 karakter");
       return;
     }
 
     // Reset error message jika tidak ada error
     setErrorMessage("");
 
-    // Simulasi validasi user (bisa diganti dengan API call untuk autentikasi)
-    const validEmail = "user@example.com";
-    const validPassword = "password123";
+    try {
+      // Mengirim permintaan POST ke backend untuk validasi login
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          username: username,
+          password: password,
+        }
+      );
 
-    if (email !== validEmail || password !== validPassword) {
-      setErrorMessage("Username atau password salah");
-      return;
+      if (response.data.success) {
+        // Menyimpan token ke localStorage
+        localStorage.setItem("authToken", response.data.token);
+        // Arahkan pengguna ke halaman landing setelah login
+        navigate("/landing");
+      } else {
+        // Jika login gagal, tampilkan pesan error
+        setErrorMessage(
+          response.data.message || "Username atau password salah"
+        );
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setErrorMessage("Terjadi kesalahan saat login");
     }
-
-    // Jika login berhasil
-    navigate("/landing");
   };
 
   return (
@@ -41,7 +53,9 @@ const Login = () => {
         <div className="container flex items-center justify-center min-h-screen">
           <div className="body-container flex flex-col items-start text-[40px] font-bold">
             <h2>Welcome Back!</h2>
-            <h2 className="w-[600px] text-[20px] font-medium">You can sign in to access with your existing account</h2>
+            <h2 className="w-[600px] text-[20px] font-medium">
+              You can sign in to access with your existing account
+            </h2>
           </div>
         </div>
       </div>
@@ -52,13 +66,13 @@ const Login = () => {
           </div>
           <div className="input flex flex-col items-center mt-[40px] gap-[20px]">
             <Input
-              type="email"
+              type="text"
               variant="faded"
-              label="Email"
-              placeholder="Enter your email"
+              label="Username"
+              placeholder="Enter your username"
               className="w-[350px]"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <Input
               type="password"
@@ -70,7 +84,9 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {errorMessage && <h2 className="text-red-700 mt-[10px]">{errorMessage}</h2>}
+          {errorMessage && (
+            <h2 className="text-red-700 mt-[10px]">{errorMessage}</h2>
+          )}
           <Button
             className="bg-[#12376A] text-white text-[20px] px-[30px] py-[25px] w-[350px] rounded-xl mt-[20px]"
             onClick={handleLogin}
