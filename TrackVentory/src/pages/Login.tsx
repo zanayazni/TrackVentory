@@ -22,6 +22,7 @@ const Login = () => {
 
     try {
       // Mengirim permintaan POST ke backend untuk validasi login
+      //testing
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         {
@@ -29,6 +30,8 @@ const Login = () => {
           password: password,
         }
       );
+
+      console.log(response.data);
 
       if (response.data.success) {
         // Menyimpan token ke localStorage
