@@ -17,8 +17,6 @@ const AddProduct = () => {
     jumlahStock: "",
   });
 
-  const [showNotification, setShowNotification] = useState(false); // State untuk notifikasi
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -27,86 +25,63 @@ const AddProduct = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Data Barang Baru:", formData);
-    // Tambahkan logika penyimpanan data di sini
-
-    // Menampilkan notifikasi
-    setShowNotification(true);
-
-    // Menyembunyikan notifikasi setelah 3 detik dan navigasi ke halaman lain
-    setTimeout(() => {
-      setShowNotification(false);
-      navigate("/landing"); // Arahkan ke halaman lain setelah data berhasil disimpan
-    }, 1000);
+    // Tambahkan logika penyimpanan data
   };
 
   return (
     <div className="body-landing flex min-h-screen">
-      {/* side bar */}
+      {/* sidebar */}
       <div className="sidebar min-h-screen bg-[#12376A] text-white w-[25rem] px-[20px]">
         <div className="head flex flex-row items-center justify-center mt-[20px] gap-[20px]">
           <FaDropbox className="text-[40px]" />
           <h2 className="text-[30px] font-semibold">TrackVentory</h2>
         </div>
         <div className="button-area flex flex-col justify-center mt-[60px] gap-[20px]">
-          <button
-            onClick={() => {
-              // Navigate to the current dashboard route
-              navigate("/landing");
-
-              // Trigger a page reload to refresh the dashboard
-              window.location.reload();
-            }}
-            className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] bg-amber-600 rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-amber-500"
-          >
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
             <AiOutlineDashboard className="text-[35px]" />
             <h2 className="text-[25px]">Dashboard</h2>
-          </button>
-          <button
-            onClick={() => navigate("/History")}
-            className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-white hover:rounded-2xl hover:cursor-pointer hover:text-black hover:shadow-md"
-          >
+          </div>
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
             <MdOutlineHistory className="text-[35px]" />
             <h2 className="text-[25px]">History</h2>
-          </button>
+          </div>
         </div>
       </div>
 
-      {/* Main board */}
+      {/* main board */}
       <div className="main-board min-h-screen bg-[#F2F4F3] flex flex-col w-full text-black px-[16px]">
-        {/* Header */}
         <div className="head flex flex-row justify-end items-center mt-[10px]">
           <FaUserCircle className="text-[40px] text-[#12376A]" />
         </div>
-
-        {/* Informasi Barang */}
-        <div className="container flex justify-center mt-[10px]">
-          <div className="box flex flex-row gap-[45px]">
-            <div className="box-1 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
-              <FaCircleArrowUp className="text-green-700 text-[60px]" />
-              <div className="text flex flex-col items-start text-[20px]">
-                <h2 className="font-semibold">Barang Masuk</h2>
-                <h2>100</h2>
+        <div className="container flex flex-col items-center gap-[20px]">
+          {/* Kotak informasi */}
+          <div className="container flex justify-center ">
+            <div className="box flex flex-row gap-[45px] ">
+              <div className="box-1 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                <FaCircleArrowUp className="text-green-700 text-[60px]" />
+                <div className="text flex flex-col items-start text-[20px]">
+                  <h2 className="font-semibold">Barang Masuk</h2>
+                  <h2>100</h2>
+                </div>
               </div>
-            </div>
-            <div className="box-2 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
-              <BsBoxSeam className="text-warning text-[60px]" />
-              <div className="text flex flex-col items-start text-[20px]">
-                <h2 className="font-semibold">Total Barang</h2>
-                <h2>100</h2>
+              <div className="box-2 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                <BsBoxSeam className="text-warning text-[60px]" />
+                <div className="text flex flex-col items-start text-[20px]">
+                  <h2 className="font-semibold">Total Barang</h2>
+                  <h2>100</h2>
+                </div>
               </div>
-            </div>
-            <div className="box-3 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
-              <FaCircleArrowDown className="text-red-700 text-[60px]" />
-              <div className="text flex flex-col items-start text-[20px]">
-                <h2 className="font-semibold">Barang Keluar</h2>
-                <h2>100</h2>
+              <div className="box-3 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+                <FaCircleArrowDown className="text-red-700 text-[60px]" />
+                <div className="text flex flex-col items-start text-[20px]">
+                  <h2 className="font-semibold">Barang Keluar</h2>
+                  <h2>100</h2>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Form "Buat Data Barang Baru" */}
-        <div className="container flex flex-col items-center gap-[20px] mt-[30px]">
+          {/* Form "Buat Data Barang Baru" */}
           <div className="form-container bg-white w-[1142px] p-[20px] mx-[20px] rounded-2xl shadow-md">
             <h2 className="text-[25px] font-bold mb-[20px]">
               Buat Data Barang Baru
@@ -154,7 +129,7 @@ const AddProduct = () => {
               </label>
               <button
                 type="submit"
-                className="bg-amber-600 text-white py-[10px] px-[20px] rounded-md hover:bg-[#12376A]"
+                className="bg-[#4E6990] text-white py-[10px] px-[20px] rounded-md hover:bg-blue-600"
               >
                 Save
               </button>
@@ -162,13 +137,6 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
-
-      {/* Notifikasi */}
-      {showNotification && (
-        <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
-          Data baru berhasil dibuat!
-        </div>
-      )}
     </div>
   );
 };

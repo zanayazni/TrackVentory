@@ -1,247 +1,174 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  FaDropbox,
-  FaUserCircle,
-} from "react-icons/fa";
+import { FaDropbox } from "react-icons/fa";
+import { Button } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
+import { BsBoxSeam } from "react-icons/bs";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import { FaCircleArrowDown } from "react-icons/fa6";
-import { BsBoxSeam } from "react-icons/bs";
+import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { MdOutlineHistory, MdDeleteForever } from "react-icons/md";
-import { IoIosSearch, IoIosArrowDown } from "react-icons/io";
+import { MdOutlineHistory } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+{/* tabel area */}
+import { MdDeleteForever } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
+
+export const kategori = [
+  { key: "Makanan", label: "Makanan" },
+  { key: "Minuman", label: "Minuman" },
+  { key: "ATK", label: "ATK" },
+  { key: "Kebersihan", label: "Kebersihan" },
+  { key: "Alat Masak", label: "Alat Masak" },
+];
 
 const Landing = () => {
   const navigate = useNavigate();
-  const [menuTerbuka, setMenuTerbuka] = useState(false);
-  const [produk, setProduk] = useState([]);
-  const [kataKunci, setKataKunci] = useState("");
-  const [kategoriTerpilih, setKategoriTerpilih] = useState("Pakaian"); // Kategori default
-  const [statistik, setStatistik] = useState({
-    masuk: 0,
-    total: 0,
-    keluar: 0,
-  });
-
-  // Mengambil user_id dari localStorage
-  const user_id = localStorage.getItem("user_id") || "1";
-
-  useEffect(() => {
-    ambilDataProduk();
-  }, [kategoriTerpilih]);
-
-  const ambilDataProduk = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/products?user_id=${user_id}&category=${kategoriTerpilih}`
-      );
-      if (!response.ok) {
-        throw new Error("Gagal mengambil data");
-      }
-      const data = await response.json();
-      setProduk(data);
-
-      // Menghitung statistik
-      setStatistik({
-        total: data.length,
-        masuk: data.filter((p) => p.stock > 0).length,
-        keluar: data.filter((p) => p.stock === 0).length,
-      });
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const hapusProduk = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        // Refresh data setelah menghapus
-        ambilDataProduk();
-      } else {
-        console.error("Gagal menghapus produk");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const kategori = [
-    "Pakaian",
-    "Aksesoris",
-    "Peralatan",
-    "Elektronik",
-    "Obat-obatan",
-  ];
-
-  // Filter produk berdasarkan kata kunci pencarian
-  const produkTerfilter = produk.filter((item) =>
-    item.name.toLowerCase().includes(kataKunci.toLowerCase())
-  );
-
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <div className="min-h-screen bg-[#12376A] text-white w-64 px-5">
-        <div className="flex items-center justify-center mt-5 gap-5">
-          <FaDropbox className="text-4xl" />
-          <h2 className="text-3xl font-semibold">TrackVentory</h2>
+    <div className="body-landing flex min-h-screen">
+      {/* side bar */}
+      <div className="sidebar min-h-screen bg-[#12376A] text-white w-[25rem] px-[20px]">
+        <div className="head flex flex-row items-center justify-center mt-[20px] gap-[20px]">
+          <FaDropbox className="text-[40px]" />
+          <h2 className="text-[30px] font-semibold">TrackVentory</h2>
         </div>
-
-        <div className="flex flex-col gap-5 mt-16">
-          <button
-            onClick={() => navigate("/landing")}
-            className="flex items-center gap-8 px-5 py-4 bg-amber-600 rounded-xl hover:shadow-amber-500/50 hover:shadow-md transition-all"
-          >
-            <AiOutlineDashboard className="text-3xl" />
-            <span className="text-xl">Dashboard</span>
-          </button>
-
-          <button
-            onClick={() => navigate("/history")}
-            className="flex items-center gap-8 px-5 py-4 hover:bg-white hover:text-black rounded-xl transition-all"
-          >
-            <MdOutlineHistory className="text-3xl" />
-            <span className="text-xl">Riwayat</span>
-          </button>
+        <div className="button-area flex flex-col justify-center mt-[60px] gap-[20px]">
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
+            <AiOutlineDashboard className="text-[35px]" />
+            <h2 className="text-[25px]">Dashboard</h2>
+          </div>
+          <div className="button-1 flex flex-row items-center gap-[30px] px-[20px] py-[15px] hover:bg-amber-600 hover:rounded-2xl hover:cursor-pointer hover:text-black">
+            <MdOutlineHistory className="text-[35px]" />
+            <h2 className="text-[25px]">History</h2>
+          </div>
         </div>
       </div>
-
-      {/* Konten Utama */}
-      <div className="flex-1 bg-[#F2F4F3] p-4">
-        {/* Header */}
-        <div className="flex justify-end">
-          <FaUserCircle className="text-4xl text-[#12376A]" />
+      
+      {/* main board */}
+      <div className="main-board min-h-screen bg-[#F2F4F3] flex flex-col w-full text-black px-[16px]">
+        <div className="head flex flex-row justify-end items-center mt-[10px]">
+          <FaUserCircle className="text-[40px] text-[#12376A]" />
         </div>
 
-        {/* Statistik */}
-        <div className="grid grid-cols-3 gap-8 mt-6">
-          <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-            <FaCircleArrowUp className="text-green-700 text-5xl" />
-            <div>
-              <h2 className="text-xl font-semibold">Barang Masuk</h2>
-              <p className="text-xl">{statistik.masuk}</p>
+        {/* Kotak informasi */}
+        <div className="container flex justify-center ">
+          <div className="box flex flex-row gap-[45px] ">
+            <div className="box-1 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+              <FaCircleArrowUp className="text-green-700 text-[60px]" />
+              <div className="text flex flex-col items-start text-[20px]">
+                <h2 className="font-semibold">Barang Masuk</h2>
+                <h2>100</h2>
+              </div>
             </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-            <BsBoxSeam className="text-amber-500 text-5xl" />
-            <div>
-              <h2 className="text-xl font-semibold">Total Barang</h2>
-              <p className="text-xl">{statistik.total}</p>
+            <div className="box-2 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+              <BsBoxSeam className="text-warning text-[60px]" />
+              <div className="text flex flex-col items-start text-[20px]">
+                <h2 className="font-semibold">Total Barang</h2>
+                <h2>100</h2>
+              </div>
             </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-            <FaCircleArrowDown className="text-red-700 text-5xl" />
-            <div>
-              <h2 className="text-xl font-semibold">Barang Keluar</h2>
-              <p className="text-xl">{statistik.keluar}</p>
+            <div className="box-3 bg-white flex flex-row items-center gap-[10px] w-[350px] px-[20px] py-[20px] rounded-2xl shadow-md">
+              <FaCircleArrowDown className="text-red-700 text-[60px]" />
+              <div className="text flex flex-col items-start text-[20px]">
+                <h2 className="font-semibold">Barang Keluar</h2>
+                <h2>100</h2>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Pencarian dan Filter */}
-        <div className="flex justify-between items-center mt-8">
-          <div className="relative flex items-center bg-white rounded-xl shadow-md w-96">
-            <IoIosSearch className="ml-4 text-gray-400 text-xl" />
-            <input
-              type="text"
-              placeholder="Cari Barang.."
-              className="w-full p-4 rounded-xl focus:outline-none"
-              value={kataKunci}
-              onChange={(e) => setKataKunci(e.target.value)}
-            />
-          </div>
-
-          <div className="flex gap-4">
-            <div className="relative">
-              <button
-                onClick={() => setMenuTerbuka(!menuTerbuka)}
-                className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-4 rounded-xl shadow-md transition-colors"
-              >
-                <span>{kategoriTerpilih || "Kategori Barang"}</span>
-                <IoIosArrowDown />
-              </button>
-
-              {menuTerbuka && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
-                  {kategori.map((item) => (
-                    <button
-                      key={item}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                      onClick={() => {
-                        setKategoriTerpilih(item);
-                        setMenuTerbuka(false);
-                      }}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => navigate("/addproduct")}
-              className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-4 rounded-xl shadow-md transition-colors"
-            >
-              Tambah Produk +
-            </button>
           </div>
         </div>
 
-        {/* Tabel */}
-        <div className="mt-8 bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="max-h-[400px] overflow-y-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-gray-50 text-xs uppercase text-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-center">No</th>
-                  <th className="px-6 py-3">Nama Barang</th>
-                  <th className="px-6 py-3">Kategori</th>
-                  <th className="px-6 py-3 text-center">Jumlah Stok</th>
-                  <th className="px-6 py-3 text-center">Aksi</th>
-                  <th className="px-6 py-3 text-center">Hapus</th>
-                </tr>
-              </thead>
-              <tbody>
-                {produkTerfilter.length > 0 ? (
-                  produkTerfilter.map((item, index) => (
-                    <tr key={item.id} className="border-b hover:bg-gray-50">
-                      <td className="px-6 py-4 text-center">{index + 1}</td>
-                      <td className="px-6 py-4 font-medium">{item.name}</td>
-                      <td className="px-6 py-4">{item.category}</td>
-                      <td className="px-6 py-4 text-center">{item.stock}</td>
-                      <td className="px-6 py-4 text-center">
-                        <button onClick={() => navigate(`/edit/${item.id}`)}>
-                          <TbEdit className="text-blue-600 hover:text-blue-800 text-2xl" />
-                        </button>
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <button onClick={() => hapusProduk(item.id)}>
-                          <MdDeleteForever className="text-red-600 hover:text-red-800 text-2xl" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td
-                      colSpan="6"
-                      className="px-6 py-4 text-center text-gray-500"
-                    >
-                      Tidak ada produk tersedia
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+        {/* search bar */}
+        <div className="search-engine flex flex-row items-center justify-between px-[20px] mt-[30px] ">
+          <div className="search">
+            <div className="relative flex items-center w-[500px] h-[55px] rounded-2xl focus-within:shadow-lg bg-white overflow-hidden shadow-md">
+              <div className="grid place-items-center h-full w-12 text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <input className="peer h-full w-full outline-none text-sm text-gray-700 pr-2" type="text" id="search" placeholder="Search Barang.." />
+            </div>
           </div>
+          
+          {/* sorting */}
+          <div className="katbar flex flex-row items-center gap-[10px]">
+            <Select className="w-[300px] shadow-lg" size="md" label="Pilih Kategori" placeholder="Select an Category">
+              {kategori.map((kategori) => (
+                <SelectItem key={kategori.key}>{kategori.label}</SelectItem>
+              ))}
+            </Select>
+            <Button className="bg-blue-600 text-white py-[28px] font-semibold" onClick={() => navigate("/AddProduct")}>Add Product +</Button>
+          </div>
+        </div>
+
+        {/* tabel area */}
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-[20px] mx-[20px]">
+          <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">No</th>
+                <th scope="col" className="px-6 py-3 text-left">Nama Barang</th>
+                <th scope="col" className="px-6 py-3 text-left">Kategori</th>
+                <th scope="col" className="px-6 py-3">Jumlah Stock</th>
+                <th scope="col" className="px-6 py-3">Action</th>
+                <th scope="col" className="px-6 py-3">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td className="px-6 py-4 align-middle">1</td>
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                  Apple MacBook Pro 17"
+                </th>
+                <td className="px-6 py-4 text-left">Laptop</td>
+                <td className="px-6 py-4 align-middle">$2999</td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                  <TbEdit className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:text-[#12376A]" onClick={() => navigate("/edit")} />
+                  </button>
+                </td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                    <MdDeleteForever className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:cursor-pointer hover:text-[#12376A]" />
+                  </button>
+                </td>
+              </tr>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td className="px-6 py-4 align-middle">2</td>
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                  Microsoft Surface Pro
+                </th>
+                <td className="px-6 py-4 text-left">Laptop PC</td>
+                <td className="px-6 py-4 align-middle">$1999</td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                    <TbEdit className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:text-[#12376A]" onClick={() => navigate("/edit")} />
+                  </button>
+                </td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                    <MdDeleteForever className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:cursor-pointer hover:text-[#12376A]" />
+                  </button>
+                </td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800">
+                <td className="px-6 py-4 align-middle">3</td>
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                  Magic Mouse 2
+                </th>
+                <td className="px-6 py-4 text-left">Accessories</td>
+                <td className="px-6 py-4 align-middle">$99</td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                    <TbEdit className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:text-[#12376A]" onClick={() => navigate("/edit")} />
+                  </button>
+                </td>
+                <td className="px-6 py-4 align-middle">
+                  <button>
+                    <MdDeleteForever className="font-medium text-blue-600 dark:text-blue-500 text-[30px] hover:cursor-pointer hover:text-[#12376A]" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
