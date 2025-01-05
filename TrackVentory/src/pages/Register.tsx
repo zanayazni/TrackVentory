@@ -64,6 +64,7 @@ const Register = () => {
           </div>
           <div className="input flex flex-col items-center mt-[40px] gap-[20px]">
             <Input
+              isRequired
               type="text"
               variant="faded"
               label="Username"
@@ -73,6 +74,7 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
             />
             <Input
+              isRequired
               type="email"
               variant="faded"
               label="Email"
@@ -82,6 +84,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              isRequired
               type="password"
               variant="faded"
               label="Password"
@@ -91,6 +94,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Input
+              isRequired
               type="password"
               variant="faded"
               label="Re-enter Password"
